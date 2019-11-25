@@ -7,8 +7,12 @@ package shogi;
 
 import java.util.Scanner;
 import shogi.Enumeraciones.ColorJugador;
+import shogi.entidades.Ficha;
 import shogi.entidades.Jugador;
 import shogi.entidades.Tablero;
+import shogi.utilidades.FichaUtil;
+import shogi.utilidades.JugadorUtil;
+import shogi.utilidades.MovimientosUtil;
 import shogi.utilidades.TableroUtil;
 
 /**
@@ -33,14 +37,26 @@ public class Interfaz {
         TableroUtil.imprimirTablero(tablero1);
 
         boolean jaqueMate = false;
+        boolean esValido = false;
         int jugada = 1;
+        Jugador jugadorActual = jugador1;
 
-
-        while (!jaqueMate) {
-            System.out.println("************ Turno Jugador " + jugador1.getNombre() + " - Color: " + jugador1.getColor() + " ************");
+        while (jaqueMate == false) {
+            System.out.println("************ Turno Jugador " + jugadorActual.getNombre() + " - Color: " + jugadorActual.getColor() + " ************");
             System.out.println("Jugada Nº " + jugada);
 
-            jaqueMate = true;
+            Ficha ficha = TableroUtil.solicitoPiezaAMover(tablero1, jugadorActual);
+
+            int[] posicionOriginal = FichaUtil.obtengoPosicionActualFicha(tablero1, ficha);
+            int[] destino = TableroUtil.solicitoDestinoPieza();
+             esValido = TableroUtil.validoMovimiento(ficha, posicionOriginal, destino);
+
+            if (esValido) {
+                TableroUtil.moverFicha(ficha, posicionOriginal, destino, tablero1);
+            }
+            
+            jugadorActual = JugadorUtil.alternaJugadorVigente(jugadorActual, jugador1, jugador2);
+            jugada++;
         }
 
     }

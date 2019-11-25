@@ -11,17 +11,15 @@ public class Ficha {
     private String representacion;
     private TipoFicha tipoFicha;
     private Jugador jugador;
-    //private int[][] ubicacion;
-    
-    public Ficha(){
-        
+
+    public Ficha() {
+
     }
 
-    public Ficha (String representacion, TipoFicha tipoFicha, Jugador jugador) {
+    public Ficha(String representacion, TipoFicha tipoFicha, Jugador jugador) {
         this.representacion = representacion;
         this.tipoFicha = tipoFicha;
         this.jugador = jugador;
-       // this.ubicacion = ubicacion;
     }
 
     public TipoFicha getTipoFicha() {
@@ -40,14 +38,6 @@ public class Ficha {
         this.jugador = jugador;
     }
 
-//    public int[][] getUbicacion() {
-//        return ubicacion;
-//    }
-//
-//    public void setUbicacion(int[][] ubicacion) {
-//        this.ubicacion = ubicacion;
-//    }
-
     public String getRepresentacion() {
         return representacion;
     }
@@ -56,6 +46,9 @@ public class Ficha {
         this.representacion = representacion;
     }
 
-
+    @Override
+    public String toString() {
+        return "Ficha{" + "representacion=" + representacion + ", tipoFicha=" + tipoFicha + ", jugador=" + jugador + '}';
+    }
 
 }

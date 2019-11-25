@@ -10,7 +10,7 @@ import java.util.List;
 public class Tablero {
 
     private Ficha tablero[][] = new Ficha[9][9];
-    private List<Ficha> fichas = new ArrayList<Ficha>();
+    private List<Ficha> fichas = new ArrayList<>();
 
     public Tablero() {
     }
