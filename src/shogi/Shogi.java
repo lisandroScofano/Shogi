@@ -11,6 +11,8 @@ public class Shogi {
      */
     public static void main(String[] args) {
 
+        Interfaz nuevoJuego = new Interfaz();
+
     }
 
 }

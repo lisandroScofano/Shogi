@@ -8,14 +8,20 @@ import shogi.Enumeraciones.TipoFicha;
  */
 public class Ficha {
 
-    TipoFicha tipoFicha;
-    boolean coronado;
-    Jugador jugador;
+    private String representacion;
+    private TipoFicha tipoFicha;
+    private Jugador jugador;
+    //private int[][] ubicacion;
+    
+    public Ficha(){
+        
+    }
 
-    public Ficha(TipoFicha tipoFicha, boolean coronado, Jugador jugador) {
+    public Ficha (String representacion, TipoFicha tipoFicha, Jugador jugador) {
+        this.representacion = representacion;
         this.tipoFicha = tipoFicha;
-        this.coronado = false;
         this.jugador = jugador;
+       // this.ubicacion = ubicacion;
     }
 
     public TipoFicha getTipoFicha() {
@@ -26,14 +32,6 @@ public class Ficha {
         this.tipoFicha = tipoFicha;
     }
 
-    public boolean isCoronado() {
-        return coronado;
-    }
-
-    public void setCoronado(boolean coronado) {
-        this.coronado = coronado;
-    }
-
     public Jugador getJugador() {
         return jugador;
     }
@@ -42,9 +40,22 @@ public class Ficha {
         this.jugador = jugador;
     }
 
-    @Override
-    public String toString() {
-        return "Ficha{" + "tipoFicha=" + tipoFicha + ", coronado=" + coronado + ", jugador=" + jugador + '}';
+//    public int[][] getUbicacion() {
+//        return ubicacion;
+//    }
+//
+//    public void setUbicacion(int[][] ubicacion) {
+//        this.ubicacion = ubicacion;
+//    }
+
+    public String getRepresentacion() {
+        return representacion;
     }
+
+    public void setRepresentacion(String representacion) {
+        this.representacion = representacion;
+    }
+
+
 
 }

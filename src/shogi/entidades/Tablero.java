@@ -9,17 +9,17 @@ import java.util.List;
  */
 public class Tablero {
 
-    int tablero[][] = new int[9][9];
-    List<Ficha> fichas = new ArrayList<Ficha>();
+    private Ficha tablero[][] = new Ficha[9][9];
+    private List<Ficha> fichas = new ArrayList<Ficha>();
 
     public Tablero() {
     }
 
-    public int[][] getTablero() {
+    public Ficha[][] getTablero() {
         return tablero;
     }
 
-    public void setTablero(int[][] tablero) {
+    public void setTablero(Ficha[][] tablero) {
         this.tablero = tablero;
     }
 
