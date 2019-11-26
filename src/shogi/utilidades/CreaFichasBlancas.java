@@ -5,9 +5,11 @@
  */
 package shogi.utilidades;
 
-import shogi.Enumeraciones.TipoFicha;
-import shogi.entidades.Ficha;
+import shogi.Enumeraciones.TipoPieza;
+import shogi.entidades.Casilla;
+import shogi.entidades.Pieza;
 import shogi.entidades.Jugador;
+import shogi.entidades.Rey;
 import shogi.entidades.Tablero;
 
 /**
@@ -17,87 +19,30 @@ import shogi.entidades.Tablero;
 public class CreaFichasBlancas {
 
     public static void creaFichasBlanco(Jugador jugador2, Tablero tablero) {
-        Ficha fichas[][] = tablero.getTablero();
+        Casilla casillas[][] = tablero.getTablero();
+        //agrego al rey blanco
+        casillas[0][4].setPieza(new Rey(TipoPieza.REY.getAbreviacion() + "v", TipoPieza.REY, jugador2));
+        //agrego a los 2 generales de oro blanco
+        casillas[0][5].setPieza(new Pieza(TipoPieza.GENERAL_DE_ORO.getAbreviacion() + "v", TipoPieza.GENERAL_DE_ORO, jugador2));
+        casillas[0][3].setPieza(new Pieza(TipoPieza.GENERAL_DE_ORO.getAbreviacion() + "v", TipoPieza.GENERAL_DE_ORO, jugador2));
+        //agrego a los 2 generales de plata blanco
+        casillas[0][6].setPieza(new Pieza(TipoPieza.GENERAL_DE_PLATA.getAbreviacion() + "v", TipoPieza.GENERAL_DE_PLATA, jugador2));
+        casillas[0][2].setPieza(new Pieza(TipoPieza.GENERAL_DE_PLATA.getAbreviacion() + "v", TipoPieza.GENERAL_DE_PLATA, jugador2));
+        //agrego a los 2 caballos blancos
+        casillas[0][7].setPieza(new Pieza(TipoPieza.CABALLO.getAbreviacion() + "v", TipoPieza.CABALLO, jugador2));
+        casillas[0][1].setPieza(new Pieza(TipoPieza.CABALLO.getAbreviacion() + "v", TipoPieza.CABALLO, jugador2));
+        //agergo a los 2 lanceros blancos
+        casillas[0][8].setPieza(new Pieza(TipoPieza.LANCERO.getAbreviacion() + "v", TipoPieza.LANCERO, jugador2));
+        casillas[0][0].setPieza(new Pieza(TipoPieza.LANCERO.getAbreviacion() + "v", TipoPieza.LANCERO, jugador2));
+        //agrego al alfil blanco
+        casillas[1][7].setPieza(new Pieza(TipoPieza.ALFIL.getAbreviacion() + "v", TipoPieza.ALFIL, jugador2));
+        //agrego a la torre blanca
+        casillas[1][1].setPieza(new Pieza(TipoPieza.TORRE.getAbreviacion() + "v", TipoPieza.TORRE, jugador2));
 
-        Ficha reyBlanco = new Ficha(TipoFicha.REY.getAbreviacion() + "v", TipoFicha.REY, jugador2);
-        tablero.agregarFicha(reyBlanco);
-        fichas[0][4] = reyBlanco;
-
-        Ficha generalOroBlanco1 = new Ficha(TipoFicha.GENERAL_DE_ORO.getAbreviacion() + "v", TipoFicha.GENERAL_DE_ORO, jugador2);
-        tablero.agregarFicha(generalOroBlanco1);
-        fichas[0][5] = generalOroBlanco1;
-
-        Ficha generalOroBlanco2 = new Ficha(TipoFicha.GENERAL_DE_ORO.getAbreviacion() + "v", TipoFicha.GENERAL_DE_ORO, jugador2);
-        tablero.agregarFicha(generalOroBlanco2);
-        fichas[0][3] = generalOroBlanco2;
-
-        Ficha generalPlataBlanco1 = new Ficha(TipoFicha.GENERAL_DE_PLATA.getAbreviacion() + "v", TipoFicha.GENERAL_DE_PLATA, jugador2);
-        tablero.agregarFicha(generalPlataBlanco1);
-        fichas[0][6] = generalPlataBlanco1;
-
-        Ficha generalPlataBlanco2 = new Ficha(TipoFicha.GENERAL_DE_PLATA.getAbreviacion() + "v", TipoFicha.GENERAL_DE_PLATA, jugador2);
-        tablero.agregarFicha(generalPlataBlanco2);
-        fichas[0][2] = generalPlataBlanco2;
-
-        Ficha caballoBlanco1 = new Ficha(TipoFicha.CABALLO.getAbreviacion() + "v", TipoFicha.CABALLO, jugador2);
-        tablero.agregarFicha(caballoBlanco1);
-        fichas[0][7] = caballoBlanco1;
-
-        Ficha caballoBlanco2 = new Ficha(TipoFicha.CABALLO.getAbreviacion() + "v", TipoFicha.CABALLO, jugador2);
-        tablero.agregarFicha(caballoBlanco2);
-        fichas[0][1] = caballoBlanco2;
-
-        Ficha lanceroBlanco1 = new Ficha(TipoFicha.LANCERO.getAbreviacion() + "v", TipoFicha.LANCERO, jugador2);
-        tablero.agregarFicha(lanceroBlanco1);
-        fichas[0][8] = lanceroBlanco1;
-
-        Ficha lanceroBlanco2 = new Ficha(TipoFicha.LANCERO.getAbreviacion() + "v", TipoFicha.LANCERO, jugador2);
-        tablero.agregarFicha(lanceroBlanco2);
-        fichas[0][0] = lanceroBlanco2;
-
-        Ficha alfilBlanco = new Ficha(TipoFicha.ALFIL.getAbreviacion() + "v", TipoFicha.ALFIL, jugador2);
-        tablero.agregarFicha(alfilBlanco);
-        fichas[1][7] = alfilBlanco;
-
-        Ficha torreBlanco = new Ficha(TipoFicha.TORRE.getAbreviacion() + "v", TipoFicha.TORRE, jugador2);
-        tablero.agregarFicha(torreBlanco);
-        fichas[1][1] = torreBlanco;
-
-        Ficha peonBlanco1 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco1);
-        fichas[2][0] = peonBlanco1;
-
-        Ficha peonBlanco2 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco2);
-        fichas[2][1] = peonBlanco2;
-
-        Ficha peonBlanco3 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco3);
-        fichas[2][2] = peonBlanco3;
-
-        Ficha peonBlanco4 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco4);
-        fichas[2][3] = peonBlanco4;
-
-        Ficha peonBlanco5 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco5);
-        fichas[2][4] = peonBlanco5;
-
-        Ficha peonBlanco6 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco6);
-        fichas[2][5] = peonBlanco6;
-
-        Ficha peonBlanco7 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco7);
-        fichas[2][6] = peonBlanco7;
-
-        Ficha peonBlanco8 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco8);
-        fichas[2][7] = peonBlanco8;
-
-        Ficha peonBlanco9 = new Ficha(TipoFicha.PEON.getAbreviacion() + "v", TipoFicha.PEON, jugador2);
-        tablero.agregarFicha(peonBlanco9);
-        fichas[2][8] = peonBlanco9;
+        //agrego los 9 peones blancos
+        for (int i = 0; i < 9; i++) {
+            casillas[2][i].setPieza(new Pieza(TipoPieza.PEON.getAbreviacion() + "v", TipoPieza.PEON, jugador2));
+        }
 
     }
 }

@@ -1,8 +1,9 @@
 package shogi.utilidades;
 
 import java.util.Scanner;
-import shogi.Enumeraciones.TipoFicha;
-import shogi.entidades.Ficha;
+import shogi.Enumeraciones.TipoPieza;
+import shogi.entidades.Casilla;
+import shogi.entidades.Pieza;
 import shogi.entidades.Jugador;
 import shogi.entidades.Tablero;
 import static shogi.utilidades.CreaFichasBlancas.creaFichasBlanco;
@@ -16,7 +17,7 @@ public class TableroUtil {
 
     public static void imprimirTablero(Tablero tablero) {
 
-        Ficha[][] fichas = tablero.getTablero();
+        Casilla[][] casillas = tablero.getTablero();
 
         System.out.print("   ");
         for (int i = 0; i < 9; i++) {
@@ -33,15 +34,15 @@ public class TableroUtil {
         System.out.print("+");
         System.out.println("");
 
-        for (int i = 0; i < fichas.length; i++) {
+        for (int i = 0; i < casillas.length; i++) {
             System.out.print(i + " |");
-            for (int j = 0; j < fichas[i].length; j++) {
-                if (fichas[i][j] != null) {
-                    System.out.print(fichas[i][j].getRepresentacion());
+            for (int j = 0; j < casillas[i].length; j++) {
+                if (casillas[i][j].getPieza() != null) {
+                    System.out.print(casillas[i][j].getPieza().getRepresentacion());
                 } else {
                     System.out.print("  ");
                 }
-                if (j != fichas[i].length - 1) {
+                if (j != casillas[i].length - 1) {
                     System.out.print("\t");
                 }
             }
@@ -59,14 +60,15 @@ public class TableroUtil {
     public static void armarTableroInicio(Jugador jugador1, Jugador jugador2, Tablero tablero) {
         //posiciono las fichas del jugador 1 (negro)
         creaFichasNegro(jugador1, tablero);
+        //posiciono las fichas del jugador 2 (blanco)
         creaFichasBlanco(jugador2, tablero);
 
     }
 
-    public static Ficha solicitoPiezaAMover(Tablero tablero, Jugador jugador) {//solicito datos para movimiento y valido que la ficha corresponda al jugador
+    public static Pieza solicitoPiezaAMover(Tablero tablero, Jugador jugador) {//solicito datos para movimiento y valido que la ficha corresponda al jugador
         Scanner input = new Scanner(System.in);
 
-        Ficha ficha = new Ficha();
+        Pieza ficha = new Pieza();
         int fila;
         int columna;
         boolean correspondeAlJugador = false;
@@ -75,71 +77,71 @@ public class TableroUtil {
             if (intento > 0) {
                 System.out.println("La ficha ingresada no es correcta, por favor revise las coordenadas");
             }
-            fila = FichaUtil.solicitoFila();
+            fila = PiezaUtil.solicitoFila();
 
-            columna = FichaUtil.solicitoColumna();
+            columna = PiezaUtil.solicitoColumna();
 
-            ficha = FichaUtil.buscarFichaPorUbicacion(tablero, fila, columna);
+            ficha = PiezaUtil.buscarPiezaPorUbicacion(tablero, fila, columna);
             if (ficha != null) {
-                correspondeAlJugador = FichaUtil.verificarFichaCorrespondeAJugador(ficha, jugador);
+                correspondeAlJugador = PiezaUtil.verificarPiezaCorrespondeAJugador(ficha, jugador);
             }
             intento++;
         } while (!correspondeAlJugador);
         return ficha;
     }
 
-    public static int[] solicitoDestinoPieza() {
-        int destinoPieza[] = new int[2];
-        destinoPieza[0] = FichaUtil.solicitoFila();
-        destinoPieza[1] = FichaUtil.solicitoColumna();
-        return destinoPieza;
+    public static Casilla solicitoCasillaDestinoPieza() {
+        Casilla casilla = new Casilla();
+        casilla.setF(PiezaUtil.solicitoFila());
+        casilla.setC(PiezaUtil.solicitoColumna());
+        return casilla;
     }
 
-    public static boolean validoMovimiento(Ficha ficha, int[] origen, int[] destino) {
-        boolean esValido; 
-        TipoFicha tipoFicha = ficha.getTipoFicha();
+    public static boolean validoMovimiento(Pieza pieza, Casilla origen, Casilla destino) {
+        boolean esValido;
+        TipoPieza tipoFicha = pieza.getTipoPieza();
         switch (tipoFicha) {
             case ALFIL:
-                esValido = MovimientosUtil.validarMovimientoAlfil(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoAlfil(pieza, origen, destino);
                 break;
             case ALFIL_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoAlfilCoronado(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoAlfilCoronado(pieza, origen, destino);
                 break;
             case CABALLO:
-                esValido = MovimientosUtil.validarMovimientoCaballo(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoCaballo(pieza, origen, destino);
                 break;
             case CABALLO_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoCaballoCoronado(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoCaballoCoronado(pieza, origen, destino);
                 break;
             case GENERAL_DE_ORO:
-                esValido = MovimientosUtil.validarMovimientoGeneralOro(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoGeneralOro(pieza, origen, destino);
                 break;
             case GENERAL_DE_PLATA:
-                esValido = MovimientosUtil.validarMovimientoGeneralPlata(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoGeneralPlata(pieza, origen, destino);
                 break;
             case GENERAL_DE_PLATA_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoGeneralPlataCoronado(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoGeneralPlataCoronado(pieza, origen, destino);
                 break;
             case LANCERO:
-                esValido = MovimientosUtil.validarMovimientoLancero(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoLancero(pieza, origen, destino);
                 break;
             case LANCERO_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoLanceroCoronado(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoLanceroCoronado(pieza, origen, destino);
                 break;
             case PEON:
-                esValido = MovimientosUtil.validarMovimientoPeon(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoPeon(pieza, origen, destino);
                 break;
             case PEON_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoPeonCoronado(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoPeonCoronado(pieza, origen, destino);
                 break;
             case REY:
-                esValido = MovimientosUtil.validarMovimientoRey(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoRey(pieza, origen, destino);
                 break;
             case TORRE:
-                esValido = MovimientosUtil.validarMovimientoTorre(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoTorre(pieza, origen, destino);
                 break;
             case TORRE_PROMOCIONADA:
-                esValido = MovimientosUtil.validarMovimientoTorreCoronada(ficha, origen, destino);
+                esValido = MovimientosUtil.validarMovimientoTorreCoronada(pieza, origen, destino);
                 break;
             default:
                 esValido = false;
@@ -147,10 +149,9 @@ public class TableroUtil {
         }
         return esValido;
     }
-    
-    public static void moverFicha(Ficha ficha,int[] origen, int[] destino, Tablero tablero){
-        Ficha fichas[][] = tablero.getTablero();
-        fichas[destino[0]][destino[1]] = ficha;
-        fichas[origen[0]][origen[1]] = null;
+
+    public static void moverPieza(Casilla origen, Casilla destino) {
+        destino.setPieza(origen.getPieza());
+        origen.setPieza(null);
     }
 }

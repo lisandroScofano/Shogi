@@ -9,29 +9,35 @@ import java.util.List;
  */
 public class Tablero {
 
-    private Ficha tablero[][] = new Ficha[9][9];
-    private List<Ficha> fichas = new ArrayList<>();
+    private Casilla tablero[][] = new Casilla[9][9];
+    private List<Pieza> fichas = new ArrayList<>();
 
     public Tablero() {
+        //agergo casilleros al tablero
+        for (int f = 0; f < tablero.length; f++) {
+            for (int c = 0; c < tablero[f].length; c++) {
+                tablero[f][c] = new Casilla(f, c);
+            }
+        }
     }
 
-    public Ficha[][] getTablero() {
+    public Casilla[][] getTablero() {
         return tablero;
     }
 
-    public void setTablero(Ficha[][] tablero) {
+    public void setTablero(Casilla[][] tablero) {
         this.tablero = tablero;
     }
 
-    public List<Ficha> getFichas() {
+    public List<Pieza> getFichas() {
         return fichas;
     }
 
-    public void setFichas(List<Ficha> fichas) {
+    public void setFichas(List<Pieza> fichas) {
         this.fichas = fichas;
     }
 
-    public void agregarFicha(Ficha ficha) {
+    public void agregarFicha(Pieza ficha) {
         this.fichas.add(ficha);
     }
 

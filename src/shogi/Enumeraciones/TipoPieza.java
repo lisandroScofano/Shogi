@@ -4,7 +4,7 @@ package shogi.Enumeraciones;
  *
  * @author lisandroscofano
  */
-public enum TipoFicha {
+public enum TipoPieza {
     REY("REY", "K"),
     GENERAL_DE_ORO("GENERAL DE ORO", "G"),
     GENERAL_DE_PLATA("GENERAL DE PLATA", "S"),
@@ -23,7 +23,7 @@ public enum TipoFicha {
     private final String completo;
     private final String abreviacion;
 
-    private TipoFicha(String completo, String abreviacion) {
+    private TipoPieza(String completo, String abreviacion) {
         this.completo = completo;
         this.abreviacion = abreviacion;
 
