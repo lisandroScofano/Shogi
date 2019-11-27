@@ -29,6 +29,10 @@ public class Tablero {
         this.tablero = tablero;
     }
 
+    public Casilla getCasilla(int f, int c) {
+        return tablero[f][c];
+    }
+
     public List<Pieza> getFichas() {
         return fichas;
     }

@@ -1,6 +1,8 @@
 package shogi.entidades;
 
+import shogi.Enumeraciones.ColorJugador;
 import shogi.Enumeraciones.TipoPieza;
+import shogi.utilidades.MovimientosUtil;
 
 /**
  *
@@ -18,8 +20,41 @@ public class GeneralPlata extends Pieza {
     }
 
     @Override
-    public boolean movimientoEsValido(Casilla origen, Casilla destino, Tablero tablero) {
-//Una casilla en diagonal, o bien vertical adelante, es decir, cinco movimientos posibles.
-    }
-
+    public boolean movimientoEsValido(Casilla casillaOrigen, Casilla casillaDestino, Tablero tablero) {
+        if (isCoronada()) {
+            MovimientosUtil.validarMovimientoGeneralOro(casillaOrigen, casillaDestino);
+        }
+        //Una casilla en diagonal, o bien vertical adelante, es decir, cinco movimiencasillaDestinos posibles.
+        	if(((Math.abs(casillaOrigen.getF() - casillaDestino.getF()) <= 1) && ((Math.abs(casillaOrigen.getC() - casillaDestino.getC()) <= 1)))) {
+			if(casillaOrigen.getPieza().getJugador().getColor() == ColorJugador.NEGRO) {
+				//If Piece is moving backwards p1
+				if(casillaOrigen.getF() - casillaDestino.getF() == 1) {
+					if(casillaOrigen.getC() == casillaDestino.getC()) {
+						return false;
+					}
+				}
+			} else if(casillaOrigen.getPieza().getJugador().getColor() == ColorJugador.BLANCO) {
+				//If Piece is moving backwards p2
+				if(casillaOrigen.getF() - casillaDestino.getF() == -1) {
+					if(casillaOrigen.getC() == casillaDestino.getC()) {
+						return false;
+					}
+				}
+			}
+			
+			//moving sideways
+			if(casillaOrigen.getF() == casillaDestino.getF()) {
+				return false;
+			}   
+			if(casillaDestino.getPieza() != null) {
+                            //verifico que si la casilla esta ocupada no sea una pieza del jugador que mueve
+				if(casillaOrigen.getPieza().getJugador()== casillaDestino.getPieza().getJugador()) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 }
+
