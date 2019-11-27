@@ -16,10 +16,17 @@ public class Pieza {
     public Pieza() {
         this.coronada = false;
     }
+    
+    public Pieza (TipoPieza tipoPieza){
+        this.coronada = false;
+        this.tipoPieza = tipoPieza;
+    }
 
-    public Pieza(Jugador jugador) {
+    public Pieza(TipoPieza tipoPieza, String representacion, Jugador jugador) {
+        this.tipoPieza = tipoPieza;
         this.jugador = jugador;
         this.coronada = false;
+        this.representacion = representacion;
     }
 
     public TipoPieza getTipoPieza() {
