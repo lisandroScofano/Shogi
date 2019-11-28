@@ -25,24 +25,25 @@ public class GeneralPlata extends Pieza {
             MovimientosUtil.validarMovimientoGeneralOro(casillaOrigen, casillaDestino);
         }
         //Una casilla en diagonal, o bien vertical adelante, es decir, cinco movimiencasillaDestinos posibles.
-        	if(((Math.abs(casillaOrigen.getF() - casillaDestino.getF()) <= 1) && ((Math.abs(casillaOrigen.getC() - casillaDestino.getC()) <= 1)))) {
+        	if(((Math.abs(casillaOrigen.getF() - casillaDestino.getF()) <= 1) 
+                        && ((Math.abs(casillaOrigen.getC() - casillaDestino.getC()) <= 1)))) {
 			if(casillaOrigen.getPieza().getJugador().getColor() == ColorJugador.NEGRO) {
-				//If Piece is moving backwards p1
-				if(casillaOrigen.getF() - casillaDestino.getF() == 1) {
+				//controlo que la ficha no se mueva para atras
+				if(casillaOrigen.getF() - casillaDestino.getF() == -1) {
 					if(casillaOrigen.getC() == casillaDestino.getC()) {
 						return false;
 					}
 				}
 			} else if(casillaOrigen.getPieza().getJugador().getColor() == ColorJugador.BLANCO) {
-				//If Piece is moving backwards p2
-				if(casillaOrigen.getF() - casillaDestino.getF() == -1) {
+ 				//controlo que la ficha no se mueva para atras
+				if(casillaOrigen.getF() - casillaDestino.getF() == 1) {
 					if(casillaOrigen.getC() == casillaDestino.getC()) {
 						return false;
 					}
 				}
 			}
 			
-			//moving sideways
+			//verifico si solo se mueve para los costados (ni arriba ni abajo)
 			if(casillaOrigen.getF() == casillaDestino.getF()) {
 				return false;
 			}   

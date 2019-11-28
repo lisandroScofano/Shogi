@@ -49,7 +49,6 @@ public class Interfaz {
 
             Casilla casillaOriginal = PiezaUtil.obtengoCasillaActualPieza(tablero1, ficha);
             Casilla casillaDestino = TableroUtil.solicitoCasillaDestinoPieza();
-             esValido = TableroUtil.validoMovimiento(ficha, casillaOriginal, casillaDestino);
 
             if (esValido) {
                 TableroUtil.moverPieza(casillaOriginal, casillaDestino);

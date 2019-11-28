@@ -97,58 +97,6 @@ public class TableroUtil {
         return casilla;
     }
 
-    public static boolean validoMovimiento(Pieza pieza, Casilla origen, Casilla destino) {
-        boolean esValido;
-        TipoPieza tipoFicha = pieza.getTipoPieza();
-        switch (tipoFicha) {
-            case ALFIL:
-                esValido = MovimientosUtil.validarMovimientoAlfil(pieza, origen, destino);
-                break;
-            case ALFIL_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoAlfilCoronado(pieza, origen, destino);
-                break;
-            case CABALLO:
-                esValido = MovimientosUtil.validarMovimientoCaballo(pieza, origen, destino);
-                break;
-            case CABALLO_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoCaballoCoronado(pieza, origen, destino);
-                break;
-            case GENERAL_DE_ORO:
-                esValido = MovimientosUtil.validarMovimientoGeneralOro(pieza, origen, destino);
-                break;
-            case GENERAL_DE_PLATA:
-                esValido = MovimientosUtil.validarMovimientoGeneralPlata(pieza, origen, destino);
-                break;
-            case GENERAL_DE_PLATA_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoGeneralPlataCoronado(pieza, origen, destino);
-                break;
-            case LANCERO:
-                esValido = MovimientosUtil.validarMovimientoLancero(pieza, origen, destino);
-                break;
-            case LANCERO_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoLanceroCoronado(pieza, origen, destino);
-                break;
-            case PEON:
-                esValido = MovimientosUtil.validarMovimientoPeon(pieza, origen, destino);
-                break;
-            case PEON_PROMOCIONADO:
-                esValido = MovimientosUtil.validarMovimientoPeonCoronado(pieza, origen, destino);
-                break;
-            case REY:
-                esValido = MovimientosUtil.validarMovimientoRey(pieza, origen, destino);
-                break;
-            case TORRE:
-                esValido = MovimientosUtil.validarMovimientoTorre(pieza, origen, destino);
-                break;
-            case TORRE_PROMOCIONADA:
-                esValido = MovimientosUtil.validarMovimientoTorreCoronada(pieza, origen, destino);
-                break;
-            default:
-                esValido = false;
-                break;
-        }
-        return esValido;
-    }
 
     public static void moverPieza(Casilla origen, Casilla destino) {
         destino.setPieza(origen.getPieza());
